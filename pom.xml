@@ -55,11 +55,7 @@
 			<artifactId>bonecp</artifactId>
 			<version>${bonecp.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-			<version>${postgresql.version}</version>
-		</dependency>
+		
 		<dependency>
 			<groupId>commons-dbutils</groupId>
 			<artifactId>commons-dbutils</artifactId>
@@ -97,18 +93,6 @@
 			<artifactId>velocity</artifactId>
 			<version>${velocity.version}</version>
 		</dependency>
-		
-		<dependency>
-		    <groupId>com.jcraft</groupId>
-		    <artifactId>jsch</artifactId>
-		    <version>${jsch.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.apache.pdfbox</groupId>
-			<artifactId>pdfbox</artifactId>
-			<version>${pdfbox.version}</version>
-		</dependency>
 		 
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -121,13 +105,13 @@
 			<version>${logback.version}</version>
 		</dependency>
  
-		<dependency>
+		<!-- <dependency>
 			<groupId>javax.media.jai</groupId>
 			<artifactId>com.springsource.javax.media.jai.core</artifactId>
 			<version>${jai.version}</version>
-		</dependency>
+		</dependency> -->
 		
-		<dependency>
+		<!-- <dependency>
 			<groupId>javax.media.jai</groupId>
 			<artifactId>com.springsource.javax.media.jai.codec</artifactId>
 			<version>${jai.version}</version>
@@ -147,7 +131,7 @@
 			<groupId>org.apache.lucene</groupId>
 			<artifactId>lucene-highlighter</artifactId>
 			<version>${lucene.version}</version>
-		</dependency>
+		</dependency> -->
 		
 		<dependency>
 			<groupId>junit</groupId>
