@@ -62,6 +62,10 @@ public class AppContext {
 			return appConfig.getString("site");
 		}
 		
+		if ("comment.server".equals(key)) {
+			return appConfig.getString("comment.server");
+		}
+		
 		return null;
 	}
 }
