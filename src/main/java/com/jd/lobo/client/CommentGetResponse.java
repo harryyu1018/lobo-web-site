@@ -13,7 +13,7 @@ public class CommentGetResponse {
 	
 	private Integer code;			// 服务请求返回码
 	private String message;			// 服务请求message
-	private List<Comment> data;		// 评价结果列表
+	private CommentGetRespResult data;
 	
 	public Integer getCode() {
 		return code;
@@ -31,17 +31,18 @@ public class CommentGetResponse {
 		this.message = message;
 	}
 	
-	public List<Comment> getData() {
+	public CommentGetRespResult getData() {
 		return data;
 	}
-	
-	public void setData(List<Comment> data) {
+
+	public void setData(CommentGetRespResult data) {
 		this.data = data;
 	}
-	
+
 	@Override
 	public String toString() {
 		return JsonUtils.writeString(this);
 	}
 	
 }
+

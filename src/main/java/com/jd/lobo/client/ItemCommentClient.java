@@ -15,6 +15,8 @@ import org.slf4j.LoggerFactory;
 
 import com.jd.lobo.AppContext;
 import com.jd.lobo.pojo.Comment;
+import com.jd.lobo.util.JerseyUtils;
+import com.jd.lobo.util.JsonUtils;
 
 /**
  * 调用商品评价数据的客户端.
@@ -38,13 +40,13 @@ public class ItemCommentClient {
 	 * @param page	分页id.
 	 * @param pageSize	每个分页评论数量.
 	 */
-	public List<Comment> get(long skuId, int page, int pageSize) {
+	public List<Comment> get(long spuId, int page, int pageSize) {
 		
-		String url = String.format("%s", getServer(), resourceUri);
+		String url = String.format("%s%s", getServer(), resourceUri);
 		WebTarget wt = clientInstance.target(url);
 		
 		MultivaluedHashMap<String, String> formData = new MultivaluedHashMap<>();
-		formData.add("sku_id", String.valueOf(skuId));
+		formData.add("spu_id", String.valueOf(spuId));
 		formData.add("page", String.valueOf(page));
 		formData.add("page_size", String.valueOf(pageSize));
 		
@@ -52,14 +54,16 @@ public class ItemCommentClient {
 		
 		try {
 			Response resp = wt.request(MediaType.APPLICATION_JSON_TYPE).post(Entity.form(formData));
-			CommentGetResponse commentGetResponse = resp.readEntity(CommentGetResponse.class);
+			
+			String json = JerseyUtils.readStringAndClose(resp, clientInstance);
+			CommentGetResponse commentGetResponse = JsonUtils.readObject(json, CommentGetResponse.class);
 			
 			if (commentGetResponse != null && commentGetResponse.getCode() == 0) {
-				comments = commentGetResponse.getData();
+				comments = commentGetResponse.getData().getResult();
 			}
 			
 		} catch (Exception e) {
-			LOGGER.error("请求商品评价异常, skuId: {}, page: {}, pageSize: {}.", skuId, page, pageSize);
+			LOGGER.error("请求商品评价异常, skuId: {}, page: {}, pageSize: {}.", spuId, page, pageSize);
 		}
 		
 		return comments;

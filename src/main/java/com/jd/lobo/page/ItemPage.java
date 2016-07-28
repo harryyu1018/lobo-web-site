@@ -31,7 +31,7 @@ public class ItemPage extends AbstractPage {
 		values.put("staticRoot", AppContext.getInstance().getSetting("site.static.root"));
 		
 		ItemCommentClient client = new ItemCommentClient();
-		List<Comment> comments = client.get(id, 0, 10);
+		List<Comment> comments = client.get(id, 2, 10);
 		
 		String html = HtmlUtils.render(getTemplateName(), values, null);
 		return Response.ok(html, MediaType.TEXT_HTML_TYPE).build();

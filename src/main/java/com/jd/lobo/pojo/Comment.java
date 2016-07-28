@@ -9,21 +9,21 @@ import java.util.List;
 public class Comment {
 	public long id;
 
-	public long skuId;
+	public Long sku_id;
 
-	public long spuId;
+	public Long spu_id;
 
-	public Long userId;
+	public Long user_id;
 
-	public Long createTime;
+	public Long create_time;
 
 	public String comment;
 
 	public List<String> replies;
 
-	public List<String> picPath;
+	public List<String> pic_path;
 
-	public int score;
+	public Integer score;
 
 	public long getId() {
 		return id;
@@ -33,36 +33,36 @@ public class Comment {
 		this.id = id;
 	}
 
-	public long getSkuId() {
-		return skuId;
+	public Long getSku_id() {
+		return sku_id;
 	}
 
-	public void setSkuId(long skuId) {
-		this.skuId = skuId;
+	public void setSku_id(Long sku_id) {
+		this.sku_id = sku_id;
 	}
 
-	public long getSpuId() {
-		return spuId;
+	public Long getSpu_id() {
+		return spu_id;
 	}
 
-	public void setSpuId(long spuId) {
-		this.spuId = spuId;
+	public void setSpu_id(Long spu_id) {
+		this.spu_id = spu_id;
 	}
 
-	public Long getUserId() {
-		return userId;
+	public Long getUser_id() {
+		return user_id;
 	}
 
-	public void setUserId(Long userId) {
-		this.userId = userId;
+	public void setUser_id(Long user_id) {
+		this.user_id = user_id;
 	}
 
-	public Long getCreateTime() {
-		return createTime;
+	public Long getCreate_time() {
+		return create_time;
 	}
 
-	public void setCreateTime(Long createTime) {
-		this.createTime = createTime;
+	public void setCreate_time(Long create_time) {
+		this.create_time = create_time;
 	}
 
 	public String getComment() {
@@ -81,20 +81,21 @@ public class Comment {
 		this.replies = replies;
 	}
 
-	public List<String> getPicPath() {
-		return picPath;
+	public List<String> getPic_path() {
+		return pic_path;
 	}
 
-	public void setPicPath(List<String> picPath) {
-		this.picPath = picPath;
+	public void setPic_path(List<String> pic_path) {
+		this.pic_path = pic_path;
 	}
 
-	public int getScore() {
+	public Integer getScore() {
 		return score;
 	}
 
-	public void setScore(int score) {
+	public void setScore(Integer score) {
 		this.score = score;
 	}
+
 }
 
