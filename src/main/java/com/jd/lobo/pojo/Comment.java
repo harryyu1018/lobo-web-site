@@ -24,6 +24,12 @@ public class Comment {
 	public List<String> pic_path;
 
 	public Integer score;
+	
+	private String style;
+	
+	private String size;
+	
+	private String level;
 
 	public long getId() {
 		return id;
@@ -95,6 +101,30 @@ public class Comment {
 
 	public void setScore(Integer score) {
 		this.score = score;
+	}
+
+	public String getStyle() {
+		return style;
+	}
+
+	public void setStyle(String style) {
+		this.style = style;
+	}
+
+	public String getSize() {
+		return size;
+	}
+
+	public void setSize(String size) {
+		this.size = size;
+	}
+
+	public String getLevel() {
+		return level;
+	}
+
+	public void setLevel(String level) {
+		this.level = level;
 	}
 
 }

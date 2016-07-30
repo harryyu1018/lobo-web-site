@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+
+    <!-- [if lt IE 9]>
+        <script src="$staticRoot/js/html5shiv.js"></script>
+        <script src="$staticRoot/js/respond.min.js"></script>
+    -->
+
+    <title>用户添加评论</title>
+
+    <link rel="shortcut icon" href="$staticRoot/img/logo.jpg" />
+    <link href="$staticRoot/css/bootstrap.min.css" rel="stylesheet">
+    <link href="$staticRoot/css/star-rating.min.css" rel="stylesheet">
+    <link href="$staticRoot/css/font-awesome.min.css" rel="stylesheet">
+    <link href="$staticRoot/css/main.css" rel="stylesheet">
+    <link href="$staticRoot/css/main-index.css" rel="stylesheet">
+    <link href="$staticRoot/css/noty-style.css" rel="stylesheet">
+    <link href="$staticRoot/css/main-add.css" rel="stylesheet">
+
+	<style type="text/css">
+	
+		.titleComment {
+			padding: 10px;
+			margin-top: 20px;
+			margin-bottom: 60px;
+		}
+	
+		.order {
+			margin-top: 0px;
+		}
+		
+		.order span {
+			font-size: 18px;
+			padding-bottom: 15px;
+			text-align: left;
+		}
+		
+		.order p {
+			text-align: left;
+			font-size: 18px;
+			line-height: 20px;
+			color: #7c8c98;
+		}
+		
+		.order img {
+			margin-top: 0px;
+			height: 80%;
+		}
+		
+		#register-chart {
+            width: 100%;
+            height: 1000px;
+            font-size: 14px;
+        }
+        
+        #delegation-chart {
+			width		: 100%;
+			height		: 500px;
+			font-size	: 11px;
+		}
+
+        .rating span.star:hover:before, .rating span.star:hover ~ span.star:before {
+            content: "\f005";
+            color: #e3cf7a;
+        }
+
+        .rating span.star:before {
+            content: "\f006";
+            padding-right: 5px;
+            color: #777777;
+        }
+        *:before, *:after {
+            /* -webkit-box-sizing: border-box; */
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+	</style>
+    <script src="$staticRoot/js/echarts.common.min.js"></script>
+</head>
+<body>
+
+
+<div id="header">
+    <nav class="navbar navbar-default navbar-static-top navbar-white-ver">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#header-navbar-collapse" aria-expanded="false">
+                    <span class="sr-only">Toggle navigate</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">
+                    <img src="$staticRoot/img/jd.jpg" height="60" style="margin-top:-10px;"/>
+                </a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="header-navbar-collapse">
+                <div class="nav navbar-nav btn-group navbar-right-special navbar-right">
+
+                        <button type="button" class = 'navbar-right-button' onclick = "window.location = '/userspace/profile'"><i class = 'fa fa-user'></i>&nbsp&nbsp 京小东</button>
+                        <button type="button" class= "navbar-right-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="caret"></span>
+                            <span class="sr-only"></span>
+                        </button>
+
+                        <ul class="dropdown-menu">
+                            <li><a href="/userspace/contest">我的Lobo</a></li>
+                            <li><a href="/userspace/profile">订单管理</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a id="btn-sign-out"><i class="fa fa-sign-out"></i>退出</a></li>
+                        </ul>
+                </div>
+                    
+
+            </div>
+
+        </div>
+
+    </nav>
+
+</div>
+
+
+
+
+<div class="well">
+    <div class="container">
+        <div class="row section" style="margin-bottom:-30px;">
+            <div class="titleComment">评价订单</div>
+                <div class=" col-xs-5 col-xs-offset-1" >
+                    <!-- <div class="order">
+                        <span>订单号：1234567890</span>
+                        <span class="date">2016-07-28</span>
+                    </div> -->
+                    <img src="$staticRoot/img/photo.jpg" alt=""/>
+                    <div class="order">
+                        <span>订单号：1234567890 价格：￥188.00</span>
+                        <span >2016-07-28</span>
+                        <p>兰黛萱言韩版2016时尚夏装新款女装修身显瘦蕾丝连衣裙 1656 粉色 M</p>
+                        <!-- <p style="text-align:center;"></p> -->
+                    </div>
+                    <!-- <div style="width:80%;">
+                        <p>兰黛萱言韩版2016时尚夏装新款女装修身显瘦蕾丝连衣裙 1656 粉色 M</p>
+                        <p style="text-align:center;">￥188.00</p>
+                    </div> -->
+                </div>
+            <div class="col-xs-5 media-body container">
+                <div class = "media-heading-item">
+                    <span class="format-title">商品满意度：</span>
+                    <span class="format-star1">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-o"></i>
+                        <i class="fa fa-star-o"></i>
+                    </span>
+                </div>
+                <div class = "media-heading-item">
+                    <span class="format-title">商品符合度：</span>
+                    <span class="format-star1">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-o"></i>
+                        <i class="fa fa-star-o"></i>
+                    </span>
+                </div>
+                <div class = "media-heading-item">
+                    <span class="format-title">店家服务态度：</span>
+                    <span class="format-star2">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-o"></i>
+                        <i class="fa fa-star-o"></i>
+                    </span>
+                </div>
+                <div class = "media-heading-item">
+                    <span class="format-title">发货速度：</span>
+                    <span class="format-star">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-o"></i>
+                        <i class="fa fa-star-o"></i>
+                    </span>
+                </div>
+                <div class = "media-heading-item">
+                    <span class="format-title">配送人员评价：</span>
+                    <span class="format-star2">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-o"></i>
+                        <i class="fa fa-star-o"></i>
+                    </span>
+                </div>
+                
+                <div class = "media-heading-item" style="margin:40px 40px 40px 0;">
+                    <span class="format-title">买家印象：</span>
+                    <span class="format-style" style="margin-left: 36px;">没有粉尘</span>
+                    <span class="format-style">没有粉尘</span>
+                    <span class="format-style">没有粉尘</span>
+                    <span class="format-style">没有粉尘</span>
+                    <span class="format-style">   +    </span>
+                    
+                </div>
+
+                <div class = "media-heading-item" style="margin:10px 10px 10px 0;">
+                    <div style="height:60px;float:left;line-height:60px;">
+                        <span class="format-title">评价晒单：</span>
+                    </div>
+                    <div class="textarea">
+                        <textarea rows="6" cols="60" text="快来分享你的购物心得吧">快来分享你的购物心得吧~</textarea>
+                        <p style="text-align:right;font-size:12px;">0/500</p>
+                    </div>
+                    
+                    
+                </div>
+                <div class = "media-heading-item func" style="margin:180px 180px 180px 0;">
+                    <button id="btn-alert" class="btn btn-sign-up">提交</button>
+                </div>
+                <div>
+
+                </div>
+            </div>
+        </div>
+    
+    </div>
+
+</div>
+
+
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-6">
+                    <div class="text-center">
+                        <ul class="footer-block">
+                            <li>
+                                <dl>
+                                    <dd><a href="/aboutUs">关于我们</a></dd>
+                                    <dd><a href="/contactUs">联系我们</a></dd>
+                                </dl>
+                            </li>
+                        </ul>
+                        <ul class="footer-block">
+                            <li>
+                                <dl>
+                                    <dd><a href="/contract">服务条款</a></dd>
+                                    <dd><a href="/privacyPolicy">隐私政策</a></dd>
+                                </dl>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    <div class="text-center">
+                        <ul class="footer-block text-center">
+
+                            <li>
+                                <dl>
+                                    <dt><i class="fa fa-wechat"></i> 微信关注</dt>
+                                    <dd>
+                                        <!-- <img src="static/img/qr_logo.jpg"> -->
+                                    </dd>
+                                    <dd><small>JD.COM</small></dd>
+                                </dl>
+                            </li>
+                            <li>
+                                <dl>
+                                    <dt><i class="fa fa-weibo"></i> 新浪微博</dt>
+                                    <dd>
+                                        <!-- <img src="static/img/weibo_logo.png"> -->
+                                    </dd>
+                                    <dd><small>评价系统</small></dd>
+                                </dl>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="text-center">
+                    <span><small>版权所有 © jd.com 京ICP备15037949号</small></span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+
+<script src="$staticRoot/js/jquery.min.js"></script>
+<script src="$staticRoot/js/star-rating.min.js"></script>
+<script src="$staticRoot/js/jquery.raty.min.js"></script>
+<script src="$staticRoot/js/bootstrap.min.js"></script>
+<script src="$staticRoot/js/jquery.formatDateTime.min.js"></script>
+<script src="$staticRoot/js/utils.js"></script>
+<script src="$staticRoot/js/amcharts.js"></script>
+
+<script type="text/javascript">
+$('#raty').raty({
+  score: function() {
+    return $(this).attr('data-score');
+  }
+
+});
+</script>
+
+<script>
+
+    $(function () {
+        $(".format-date").each(function(t){
+            $(this).html(localizeTime($(this).text().trim())).removeClass('invisible');
+        });
+        
+    });
+    
+</script>
+
+</body>
+</html>

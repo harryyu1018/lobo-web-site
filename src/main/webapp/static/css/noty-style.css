@@ -1,0 +1,41 @@
+.col-lg-10 {
+	width: 93%;
+}
+li {
+	border: none !important;
+	border-radius: 0px !important;
+	background: none !important;
+}
+
+.noty_message {
+	border: none;
+	height: 40px;
+}
+
+.noty_message_info {
+	background-color: rgba(87, 183, 226, 1);
+}
+
+.noty_message_error {
+	background-color: rgba(255, 0, 0, 1);
+}
+
+.noty_message_warning {
+	/* background-color: rgba(255, 194, 55, 1); */
+	background-color: rgba(239, 214, 39, 1);
+}
+
+.noty_text {
+	color: #ffffff;
+	font-size: 1.2em;
+	line-height: 1.6;
+	font-family: "Helvetica Neue", Helvetica, "Microsoft YaHei", Arial;
+	-webkit-font-smoothing: antialiased;
+}
+#dashboard .noty_text {
+	color: #2d2d2d;
+	font-size: 1.2em;
+	line-height: 1.6;
+	font-family: "Helvetica Neue", Helvetica, "Microsoft YaHei", Arial;
+	-webkit-font-smoothing: antialiased;
+}

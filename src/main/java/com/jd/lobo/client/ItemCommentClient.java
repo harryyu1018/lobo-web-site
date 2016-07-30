@@ -34,6 +34,23 @@ public class ItemCommentClient {
 		return AppContext.getInstance().getSetting("comment.server");
 	}
 	
+	public String getComments(long spuId, int page, int pageSize, long day) {
+		
+		String url = String.format("%s/lobo/day/comment", getServer());
+		WebTarget wt = clientInstance.target(url);
+		
+		MultivaluedHashMap<String, String> formData = new MultivaluedHashMap<>();
+		formData.add("spu_id", String.valueOf(spuId));
+		formData.add("page", String.valueOf(page));
+		formData.add("page_size", String.valueOf(pageSize));
+		formData.add("day_time", String.valueOf(day));
+		
+		Response resp = wt.request(MediaType.APPLICATION_JSON_TYPE).post(Entity.form(formData));	
+		String json = JerseyUtils.readStringAndClose(resp, clientInstance);
+		
+		return json;
+	}
+	
 	/**
 	 * 获取指定商品的评论.
 	 * @param skuId	商品id.
