@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+
+    <!-- [if lt IE 9]>
+        <script src="$staticRoot/js/html5shiv.js"></script>
+        <script src="$staticRoot/js/respond.min.js"></script>
+    -->
+
+    <title>京东评价系统</title>
+
+    <link rel="shortcut icon" href="$staticRoot/img/logo.jpg" />
+    <link href="$staticRoot/css/bootstrap.min.css" rel="stylesheet">
+    <link href="$staticRoot/css/star-rating.min.css" rel="stylesheet">
+    <link href="$staticRoot/css/font-awesome.min.css" rel="stylesheet">
+    <link href="$staticRoot/css/main.css" rel="stylesheet">
+    <link href="$staticRoot/css/main-index.css" rel="stylesheet">
+    <link href="$staticRoot/css/noty-style.css" rel="stylesheet">
+    <link href="$staticRoot/css/main-add.css" rel="stylesheet">
+
+    <style type="text/css">
+    	.rate-score .fa-star {
+    		color: #b10000;
+    	}
+    	
+    	.rate-score .fa-star-o {
+    		color: #ccc;
+    	}
+    	
+        #register-chart {
+            width: 100%;
+            height: 1000px;
+            font-size: 14px;
+        }
+
+        #delegation-chart {
+            width		: 100%;
+            height		: 500px;
+            font-size	: 11px;
+        }
+
+        .rating span.star:hover:before, .rating span.star:hover ~ span.star:before {
+            content: "\f005";
+            color: #e3cf7a;
+        }
+
+        .rating span.star:before {
+            content: "\f006";
+            padding-right: 5px;
+            color: #777777;
+        }
+        *:before, *:after {
+            /* -webkit-box-sizing: border-box; */
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+        
+        .pagination {
+        	padding-top: 20px;
+        	padding-bottom: 20px;
+        }
+        
+        .pagination li a {
+        	color: rgb(200, 22, 0);
+        }
+    </style>
+    <script src="$staticRoot/js/echarts.common.min.js"></script>
+</head>
+<body>
+
+
+<div id="header">
+    <nav class="navbar navbar-default navbar-static-top navbar-white-ver">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#header-navbar-collapse" aria-expanded="false">
+                    <span class="sr-only">Toggle navigate</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">
+                    <img src="$staticRoot/img/jd.jpg" height="60" style="margin-top:-10px;"/>
+                </a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="header-navbar-collapse" style="float:right;">
+               <ul class="nav navbar-nav">
+                    <li class="active"><a href="/index"><span>添加评论</span></a></li>
+                </ul>
+                <!--  <ul class="nav navbar-nav">
+                     <li class="active"><a href="/index"><span>首页</span></a></li>
+                     <li class=""><a href="/contests"><span>赛事</span></a></li>
+                     <li class=""><a href="/contest/create"><span>发布比赛</span></a></li>
+                 </ul> -->
+                <div class="nav navbar-nav btn-group navbar-right-special navbar-right">
+
+                    <button type="button" class = 'navbar-right-button' onclick = "window.location = '/userspace/profile'"><i class = 'fa fa-user'></i>&nbsp&nbsp 京小东</button>
+                    <button type="button" class= "navbar-right-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="caret"></span>
+                        <span class="sr-only"></span>
+                    </button>
+
+                    <ul class="dropdown-menu">
+                        <li><a href="/userspace/contest">我的Lobo</a></li>
+                        <li><a href="/userspace/profile">订单管理</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a id="btn-sign-out"><i class="fa fa-sign-out"></i>退出</a></li>
+                    </ul>
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </nav>
+
+</div>
+
+
+
+
+<div class="well">
+    <div class="container">
+        <div class="row section">
+            <img class=" col-lg-5" src="$staticRoot/img/photo.jpg" alt="" />
+            <div class="col-lg-6 media-body container">
+                <h2 class="media-heading">兰黛萱言韩版2016时尚夏装新款女装修身显瘦蕾丝连衣裙 1656 粉色 M</h2>
+                <p class="mes">支持货到付款 七天无理由退换 欢迎选购！！！</p>
+                <div class = "media-heading-item">
+                    <span class="format-title">京东价：</span><span class="format-value"> ￥188.00</span>
+                </div>
+                <div class = "media-heading-item">
+                    <span class="format-title">促销：</span><span class="format-title"> 满498.00减50.00，满1018.00减150.00，满2258.00减398.00</span>
+                </div>
+                <div class = "media-heading-item">
+                    <span class="format-title">配送至：</span><span> 北京三环 有货 免运费</span>
+                </div>
+                <div class = "media-heading-item" style="margin:10px 0 10px 0;">
+                    <span class="format-title">颜色：</span>
+                    <span> 
+                        <img src="$staticRoot/img/one.jpg" />
+                        <img src="$staticRoot/img/two.jpg" />
+                        <img src="$staticRoot/img/three.jpg" />
+                        <img src="$staticRoot/img/four.jpg" />
+                    </span>
+                </div>
+                <div class = "media-heading-item">
+                    <span class="format-title">选择尺码：</span>
+                    <span class="format-style">M</span>
+                    <span class="format-style">L</span>
+                    <span class="format-style">XL</span>
+                    <span class="format-style">XXL</span>
+                </div>
+
+                <div class = "media-heading-item" style="margin:10px 0 10px 0;">
+                    <span class="format-title">增值保障：</span>
+                    <span class="format-style">闲置回收 ￥0.8</span>
+                </div>
+
+                <div class = "media-heading-item">
+                    <span class="format-title">白条分期：</span>
+                    <span class="format-style">30天免息</span>
+                    <span class="format-style">￥63.61×3期</span>
+                    <span class="format-style">￥32.67×6期</span>
+                    <span class="format-style">￥16.61×12期</span>
+                </div>
+
+                <div class="func">
+                    <button class="btn btn-sign-up" onclick = "window.location='$!contest.id/register'">加入购物车</button>
+                    <button class="btn btn-sign-up" onclick = "">一键购</button>
+                </div>
+            </div>
+        </div>
+
+        <div class = "row">
+            <div id = "contestInfoLong" class = "col-lg-10">
+
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation"><a href="#contest-info-step1" aria-controls="profile" role="tab" data-toggle="tab">商品介绍</a></li>
+                    <li role="presentation"><a href="#contest-info-step2" aria-controls="profile" role="tab" data-toggle="tab">售后保障</a></li>
+                    <li role="presentation" class="active"><a href="#contest-info-step3" aria-controls="profile" role="tab" data-toggle="tab">商品评价</a></li>
+                </ul>
+
+                <div class = "tab-content" style = "margin-top:30px;padding-left:30px;padding-bottom:50px;">
+                    <div role="tabpanel" class="tab-pane" id = 'contest-info-step1'>
+                        <img src="$staticRoot/img/product_detail.jpg" />
+                    </div>
+
+                    <div role="tabpanel" class="tab-pane" id = 'contest-info-step2'>
+                        <img src="$staticRoot/img/product_protect.jpg" />
+                    </div>
+                    <div role="tabpanel" class="tab-pane active" id = 'contest-info-step3'>
+                        <div>
+                            <div id="tab-feedbackRate">
+                                <p>96%</p>
+                                <p class="tab-productMatch">商品符合度</p>
+                            </div>
+                            <div class="tab-second"></div>
+
+                            <div class="tab-feedbackLabel">
+                                <span>质量好(14)</span>
+                                <span>舒服(8)</span>
+                                <span>裙子不错(4)</span>
+                                <span>还可以(3)</span>
+                                <span>好漂亮(1)</span>
+                                <div class="bad" style="margin: 15px 1px;">
+                                    <span>质量不好(5)</span>
+                                    <span>裙子有色差(1)</span>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+
+                        <div role="tabpanel" class="tab-pane" id="contest-info-register-item-chart">
+                            <div class="col-lg-10 purchase-people">购买人群
+                                <div class="nav navbar-nav btn-group indent">
+
+                                    <button type="button" class = 'navbar-right-button' onclick = "window.location = '/userspace/profile'">年龄</button>
+                                    <button type="button" class= "navbar-right-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span class="caret"></span>
+                                        <span class="sr-only"></span>
+                                    </button>
+
+                                    <ul class="dropdown-menu">
+                                        <li><a href="/userspace/contest">行业</a></li>
+                                        <li><a href="/userspace/profile">地域</a></li>
+                                        <li><a href="/userspace/profile">色彩偏好</a></li>
+                                        <li><a href="/userspace/profile">星座</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-10 tab-people">
+                                <div id="main" style="width: 600px;height:400px;text-align:center;margin:0;left:200px;"></div>
+                            </div>
+                            <div class="col-lg-10  tab-comment">
+                                <span><input type="radio" name="all" value="0"/>全部评论（99）</span>
+                                <span><input type="radio" name="picture" value="1" />图片晒单（11）</span>
+                                <span><input type="radio" name="addComment" value="2" />追评（11）</span>
+
+
+                                <div class="tab-select">
+                                    <div class="nav navbar-nav btn-group indent">
+
+                                        <button type="button" class = 'navbar-right-button' onclick = "window.location = '/userspace/profile'">全部年龄</button>
+                                        <button type="button" class= "navbar-right-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <span class="caret"></span>
+                                            <span class="sr-only"></span>
+                                        </button>
+
+                                        <ul class="dropdown-menu">
+                                            <li><a href="/userspace/contest">18岁以下</a></li>
+                                            <li><a href="/userspace/profile">18-24岁</a></li>
+                                            <li><a href="/userspace/profile">25-29岁</a></li>
+                                            <li><a href="/userspace/profile">30-39岁</a></li>
+                                            <li><a href="/userspace/profile">40岁以上</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="nav navbar-nav btn-group indent">
+                                    <span class="nav-checkbox">
+                                        <input name="checkbox" type="checkbox" value="">有内容
+                                    </span>
+                                    </div>
+                                    <div class="nav navbar-nav btn-group indent">
+
+                                        <button type="button" class = 'navbar-right-button' onclick = "window.location = '/userspace/profile'">按默认</button>
+                                        <button type="button" class= "navbar-right-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <span class="caret"></span>
+                                            <span class="sr-only"></span>
+                                        </button>
+
+                                        <ul class="dropdown-menu">
+                                            <li><a href="/userspace/contest">按时间</a></li>
+                                            <li><a href="/userspace/profile">按评价</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                
+                                #foreach ($comm in $comments)
+                                <div id="comment-block" name="comment-block" class="tab-comments">
+                                    <div id="comment-time" style="width:">
+                                        <div class="rate-score">
+                                        	
+                                        	#set ($score = $comm.score)
+                                        	#foreach($i in [1 .. $score])
+                                        		<i class="fa fa-star" aria-hidden="true"></i>
+                                        	#end
+                                        	
+                                        	#set ($unscore = 5 - $score)
+                                        	#if ($unscore != 0)
+                                        	#foreach($j in [1 .. $unscore])
+                                        		<i class="fa fa-star-o" aria-hidden="true"></i>
+                                        	#end
+                                        	#end
+                                        </div>
+                                        <div class="format-date">$comm.create_time</div>
+                                    </div>
+                                    <div id="comment-content">
+                                        $comm.comment
+                                    </div>
+                                    <div id="comment-product">
+                                        <div>$comm.style</div>
+                                        <div>$comm.size</div>
+                                    </div>
+                                    <div id="comment-information">
+                                        <div>
+                                            <span><img src="$staticRoot/img/logo.jpg" class="img"/></span>
+                                            <span>$comm.user_id</span>
+                                        </div>
+                                        <div style="margin: -2px 0 0 50px;">$comm.level</div>
+                                    </div>
+                                </div>
+                                
+                                #end
+
+                                <nav style="text-align:right;">
+                                    <ul class="pagination">
+                                        <li class="prev">
+                                            <a href="#" aria-label="Previous">
+                                                <span aria-hidden="true">&laquo;</span>
+                                            </a>
+                                        </li>
+                                        <!-- <li><a href="#">1</a></li>
+                                        <li><a href="#">2</a></li>
+                                        <li><a href="#">...</a></li>
+                                        <li><a href="#">4</a></li>
+                                        <li><a href="#">5</a></li> -->
+                                        <li class="next">
+                                            <a href="#" aria-label="Next">
+                                                <span aria-hidden="true">&raquo;</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+
+                            </div>
+                        </div>
+                        <div class="col-lg-10 purchase-people">
+                            <div class="help-new">New</div> 大家帮
+                        </div>
+                        <div class="col-lg-10 tab-help">
+                            <span class="help-title">问</span>
+                            <span>这衣服怎么样？我120斤可以穿吗？</span>
+                            <span class="help-problemNum">共12个回答</span>
+                        </div>
+                        <div class="col-lg-10 tab-help">
+                            <span class="help-answer">答</span>
+                            <span>可以穿。</span>
+                        </div>
+                        <div id="allHelp" style="display:none;">
+                            <div class="col-lg-10 tab-help">
+                                <span class="help-answer">答</span>
+                                <span>可以穿。</span>
+                            </div>
+                            <div class="col-lg-10 tab-help">
+                                <span class="help-answer">答</span>
+                                <span>可以穿。</span>
+                            </div>
+                            <div class="col-lg-10 tab-help">
+                                <span class="help-answer">答</span>
+                                <span>可以穿。</span>
+                            </div>
+                        </div>
+                        <div class="col-lg-10 tab-help">
+                            <button id="showMes">查看剩余11条回复。</buttton>
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+</div>
+
+
+<div class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6">
+                <div class="text-center">
+                    <ul class="footer-block">
+                        <li>
+                            <dl>
+                                <dd><a href="/aboutUs">关于我们</a></dd>
+                                <dd><a href="/contactUs">联系我们</a></dd>
+                            </dl>
+                        </li>
+                    </ul>
+                    <ul class="footer-block">
+                        <li>
+                            <dl>
+                                <dd><a href="/contract">服务条款</a></dd>
+                                <dd><a href="/privacyPolicy">隐私政策</a></dd>
+                            </dl>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6">
+                <div class="text-center">
+                    <ul class="footer-block text-center">
+
+                        <li>
+                            <dl>
+                                <dt><i class="fa fa-wechat"></i> 微信关注</dt>
+                                <dd>
+                                    <!-- <img src="static/img/qr_logo.jpg"> -->
+                                </dd>
+                                <dd><small>JD.COM</small></dd>
+                            </dl>
+                        </li>
+                        <li>
+                            <dl>
+                                <dt><i class="fa fa-weibo"></i> 新浪微博</dt>
+                                <dd>
+                                    <!-- <img src="static/img/weibo_logo.png"> -->
+                                </dd>
+                                <dd><small>评价系统</small></dd>
+                            </dl>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="text-center">
+                <span><small>版权所有 © jd.com 京ICP备15037949号</small></span>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('main'));
+
+    // 指定图表的配置项和数据
+    var option = {
+        title : {
+            text: '各个年龄段百分比'
+        },
+        tooltip : {
+            trigger: 'axis'
+        },
+        legend: {
+            data:['各个年龄段百分比']
+        },
+        toolbox: {
+            show : true,
+            feature : {
+                dataView : {show: true, readOnly: false},
+                magicType : {show: true, type: ['line', 'bar']},
+                restore : {show: true},
+                saveAsImage : {show: true}
+            }
+        },
+        calculable : true,
+        xAxis : [
+            {
+                type : 'category',
+                data : ['18岁以下','18-24岁','25-29岁','30-39岁','40岁以上']
+            }
+        ],
+        yAxis : [
+            {
+                type : 'value',
+                data:[10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
+            }
+        ],
+        series : [
+            {
+                name:'年龄段百分比',
+                type:'bar',
+                data:[10, 40, 15, 20,15]
+            }
+
+        ]
+    };
+
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+</script>
+
+<script src="$staticRoot/js/jquery.min.js"></script>
+<script src="$staticRoot/js/star-rating.min.js"></script>
+<script src="$staticRoot/js/jquery.raty.min.js"></script>
+<script src="$staticRoot/js/bootstrap.min.js"></script>
+<script src="$staticRoot/js/jquery.formatDateTime.min.js"></script>
+<script src="$staticRoot/js/utils.js"></script>
+<script src="$staticRoot/js/amcharts.js"></script>
+
+
+<script type="text/javascript">
+    
+    if ($!page == 1) {
+    	$('.pagination .prev').css("display", "none");
+    } else {
+    	#set ($prev = $!page - 1)
+    	$('.pagination .prev').css("display", "inline;");
+    	$('.pagination .prev a').attr("href", "?p=" + $prev + "#comment-block");
+    }
+    
+    #set ($next = $!page + 1)
+    $('.pagination .next a').attr("href", "?p=" + $next + "#comment-block");
+    
+    $('#raty').raty({
+        score: function() {
+            return $(this).attr('data-score');
+        }
+
+    });
+</script>
+
+<script>
+
+    $(function () {
+        $(".format-date").each(function(t){
+            $(this).html(localizeTime($(this).text().trim())).removeClass('invisible');
+        });
+
+    });
+
+</script>
+<script type="text/javascript">
+    $("#showMes").click(function () {
+        if(document.getElementById("allHelp").style.display="none")
+        {
+            $("#allHelp").css("display","block");
+        }else {
+            $("#allHelp").css("display","none");
+        }
+
+
+    });
+</script>
+</body>
+</html>
